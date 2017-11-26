@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
-    Conference #6
-    <div class="occupation"></div>
+    <div class="occupation" v-bind:style="blockStyle" v-for="blockStyle of occupationBlocks"></div>
     <div class="now"></div>
     <div class="scan"></div>
     <div class="free-slot"></div>
@@ -22,13 +21,36 @@
 </template>
 
 <script>
+function computeOccupationBorders(occupation) {
+  const dayStartMinutes = 7 * 60;
+  const pxPerMinute = 61 / 60;
+  const matches = occupation.match(/(\d{2}):(\d{2}) - (\d{2}):(\d{2})/).map(s => parseInt(s, 10));
+  const occupationStartMinutes = matches[1] * 60 + matches[2];
+  const occupationEndMinutes = matches[3] * 60 + matches[4];
+  const blockStart = pxPerMinute * (occupationStartMinutes - dayStartMinutes);
+  const blockHeight = pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
+  return { top: blockStart + 'px', height: blockHeight + 'px' };
+}
 export default {
   name: 'HelloWorld',
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
+      occupations: [
+        '07:30 - 08:45',
+        '17:00 - 18:30',
+        '11:00 - 12:00',
+      ]
     };
   },
+  computed: {
+    occupationBlocks() {
+      return this.occupations.map(computeOccupationBorders);
+    }
+  },
+  created() {
+    // console.log(this.occupationBlocks);
+  }
 };
 </script>
 
@@ -72,7 +94,6 @@ export default {
     position: absolute;
     width: 100%;
     background-color: #f7d4d8;
-    height: 300px;
     opacity: 0.5;
   }
 

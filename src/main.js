@@ -7,6 +7,7 @@ import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
+Vue.filter('two-decimal', num => num < 10 ? `0${num}` : num.toString());
 
 /* eslint-disable no-new */
 new Vue({
@@ -16,5 +17,3 @@ new Vue({
   components: { App },
   store,
 });
-
-Vue.filter('two-decimal', num => num < 10 ? `0${num}` : num.toString());
