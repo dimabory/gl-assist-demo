@@ -5,9 +5,9 @@
     <div class="now"></div>
     <div class="scan"></div>
     <div class="free-slot"></div>
-    <div class="hour" v-for="n in 10">
+    <div class="hour" v-for="n in 18">
       <div class="label">
-        10:00
+        {{ n+6 | two-decimal }}:00
       </div>
       <div class="slots">
         <div class="first-half">
