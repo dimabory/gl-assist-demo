@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <div class="occupation" v-bind:style="blockStyle" v-for="blockStyle of occupationBlocks"></div>
-    <div class="now"></div>
+    <div class="occupation" :style="blockStyle" v-for="blockStyle of occupationBlocks"></div>
+    <div class="now" :style="{top: nowTop}"></div>
     <div class="scan"></div>
     <div class="free-slot"></div>
     <div class="hour" v-for="n in 18">
@@ -21,14 +21,21 @@
 </template>
 
 <script>
-function computeOccupationBorders(occupation) {
+function timeToMinutes(time) {
+  const [h, m] = time.split(/:/).map(_ => parseInt(_, 10));
+  return 60 * h + m;
+}
+function timeToPxOffset(time) {
+  const minutes = timeToMinutes(time);
   const dayStartMinutes = 7 * 60;
   const pxPerMinute = 61 / 60;
-  const matches = occupation.match(/(\d{2}):(\d{2}) - (\d{2}):(\d{2})/).map(s => parseInt(s, 10));
-  const occupationStartMinutes = matches[1] * 60 + matches[2];
-  const occupationEndMinutes = matches[3] * 60 + matches[4];
-  const blockStart = pxPerMinute * (occupationStartMinutes - dayStartMinutes);
-  const blockHeight = pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
+  return pxPerMinute * (minutes - dayStartMinutes);const occupationStartMinutes = timeToMinutes(matches[1]);
+  const occupationEndMinutes = timeToMinutes(matches[2]);
+}
+function computeOccupationBorders(occupation) {
+  const matches = occupation.match(/(\d{2}:\d{2}) - (\d{2}:\d{2})/);
+  const blockStart = timeToPxOffset(matches[1]);//pxPerMinute * (occupationStartMinutes - dayStartMinutes);
+  const blockHeight = timeToPxOffset(matches[2]) - blockStart;//pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
   return { top: blockStart + 'px', height: blockHeight + 'px' };
 }
 export default {
@@ -40,13 +47,17 @@ export default {
         '07:30 - 08:45',
         '17:00 - 18:30',
         '11:00 - 12:00',
-      ]
+      ],
+      now: '10:45'
     };
   },
   computed: {
     occupationBlocks() {
       return this.occupations.map(computeOccupationBorders);
-    }
+    },
+    nowTop() {
+      return timeToPxOffset(this.now) + 'px';
+    },
   },
   created() {
     // console.log(this.occupationBlocks);
