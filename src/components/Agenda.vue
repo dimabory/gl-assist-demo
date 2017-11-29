@@ -29,14 +29,14 @@ function timeToPxOffset(time) {
   const minutes = timeToMinutes(time);
   const dayStartMinutes = 7 * 60;
   const pxPerMinute = 61 / 60;
-  return pxPerMinute * (minutes - dayStartMinutes);const occupationStartMinutes = timeToMinutes(matches[1]);
+  return pxPerMinute * (minutes - dayStartMinutes); const occupationStartMinutes = timeToMinutes(matches[1]);
   const occupationEndMinutes = timeToMinutes(matches[2]);
 }
 function computeOccupationBorders(occupation) {
   const matches = occupation.match(/(\d{2}:\d{2}) - (\d{2}:\d{2})/);
-  const blockStart = timeToPxOffset(matches[1]);//pxPerMinute * (occupationStartMinutes - dayStartMinutes);
-  const blockHeight = timeToPxOffset(matches[2]) - blockStart;//pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
-  return { top: blockStart + 'px', height: blockHeight + 'px' };
+  const blockStart = timeToPxOffset(matches[1]);// pxPerMinute * (occupationStartMinutes - dayStartMinutes);
+  const blockHeight = timeToPxOffset(matches[2]) - blockStart;// pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
+  return { top: `${blockStart}px`, height: `${blockHeight}px` };
 }
 export default {
   name: 'HelloWorld',
@@ -48,7 +48,7 @@ export default {
         '17:00 - 18:30',
         '11:00 - 12:00',
       ],
-      now: '10:45'
+      now: '10:45',
     };
   },
   computed: {
@@ -56,12 +56,12 @@ export default {
       return this.occupations.map(computeOccupationBorders);
     },
     nowTop() {
-      return timeToPxOffset(this.now) + 'px';
+      return `${timeToPxOffset(this.now)}px`;
     },
   },
   created() {
     // console.log(this.occupationBlocks);
-  }
+  },
 };
 </script>
 

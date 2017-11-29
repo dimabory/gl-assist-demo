@@ -45,12 +45,12 @@ export default {
     addMessage(delay, message) {
       return new Promise(resolve => setTimeout(
         () => {
-          this.$store.commit('ADD_MESSAGE',  message);
+          this.$store.commit('ADD_MESSAGE', message);
           resolve();
         },
-        delay
+        delay,
       ));
-    }
+    },
   },
   async created() {
     this.$store.commit('CLEAR_MESSAGES');
@@ -69,11 +69,13 @@ export default {
     this.$store.commit('CLEAR_MESSAGES');
 
     await this.addMessage(1000, { type: 'own', text: 'Lurk', time: '12:51' });
-    await this.addMessage(900, { type: 'response', text: `1). 13:00-13:30 #6 or #4
-    2). 13:30-14:20 #2`, time: '12:51' });
+    await this.addMessage(900, { type: 'response',
+      text: `1). 13:00-13:30 #6 or #4
+    2). 13:30-14:20 #2`,
+      time: '12:51' });
     // await this.addMessage(3000, { type: 'response', text: 'DUMMY PAUSE', time: '22:51' });
     // this.$store.commit('CLEAR_MESSAGES');
-  }
+  },
 };
 </script>
 

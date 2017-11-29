@@ -1,26 +1,30 @@
 <template>
   <div class="hello">
     <div class="top-nav">
-      <button class="btn-left">
-        <img src="../assets/icon.png" alt="">
+      <button class="btn">
+        <!--<img src="../assets/icon.png" alt="">-->
+        <icon class="icon icon--arrow-left" name="arrow-left" scale="1.1"></icon>
       </button>
-      <img src="../assets/icon.png" alt="" class="contact-logo">
+      <button class="btn">
+        <img src="../assets/bot--icon.jpeg" alt="" class="contact-logo">
+      </button>
       <div class="title-group">
         <div class="title">Gl Assistant</div>
         <div class="subtitle">bot</div>
       </div>
-      <button class="btn-right">
-        <img src="../assets/icon.png" alt="">
+      <button class="btn">
+        <icon class="icon icon--ellipsis-v" name="ellipsis-v" scale="2"></icon>
+        <!--<img src="../assets/icon.png" alt="">-->
       </button>
     </div>
 
     <div class="messages">
       <div class="date">November 15</div>
 
-      <div :class="{'own-msg': message.type == 'own', 'response-msg': message.type == 'response'}"
+      <div :class="['msg', {'own-msg': message.type == 'own', 'response-msg': message.type == 'response'}]"
            v-for="message in messages"
            @click="ADD_MESSAGE(message)">
-           <template v-for="line in message.text.split('\n')">{{line}}<br></template>
+        <template v-for="line in message.text.split('\n')">{{line}}<br></template>
         <div class="time">{{ message.time }}</div>
       </div>
       <!-- <div class="own-msg">
@@ -44,39 +48,55 @@
         <div class="time">22:51</div>
       </div> -->
     </div>
-    
 
-    <div class="input-pannel">
-      <img src="" alt="">
-      <input type="text"/>
-      <img src="" alt="">
-      <img src="" alt="">
-      <img src="" alt="">
+
+    <div class="input-panel">
+      <div class="input-action emoji-selector">
+        <icon class="icon icon--smile" name="smile-o" scale="1.5"></icon>
+      </div>
+      <div class="input-element">
+        <input placeholder="Message" type="text"/>
+      </div>
+      <div class="input-action attacher">
+        <icon class="icon icon--paperclip" name="paperclip" scale="1.5"></icon>
+      </div>
+      <div class="input-action attacher--camera">
+        <icon class="icon icon--camera" name="camera" scale="1.5"></icon>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+  import Icon from 'vue-awesome/components/Icon'
+  import 'vue-awesome/icons/arrow-left'
+  import 'vue-awesome/icons/ellipsis-v'
+  import 'vue-awesome/icons/smile-o'
+  import 'vue-awesome/icons/paperclip'
+  import 'vue-awesome/icons/camera'
+  import { mapState, mapMutations } from 'vuex'
 
-export default {
-  name: 'HelloWorld',
-  computed: {
-    ...mapState(['messages']),
-  },
-  methods: {
-    // ...mapMutations(['ADD_MESSAGE'])
-    ADD_MESSAGE(message) {
-      this.$store.commit('ADD_MESSAGE', message);
-    }
-  },
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    };
-  },
-};
+  export default {
+    name: 'HelloWorld',
+    components: {
+      Icon,
+    },
+    computed: {
+      ...mapState(['messages']),
+    },
+    methods: {
+      // ...mapMutations(['ADD_MESSAGE'])
+      ADD_MESSAGE (message) {
+        this.$store.commit('ADD_MESSAGE', message)
+      },
+    },
+    data () {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+      }
+    },
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -87,15 +107,25 @@ export default {
     flex-direction: column;
     min-height: 100vh;
   }
+
   .top-nav {
     background-color: #8299a5;
     display: flex;
     color: #fff;
-
-    .btn-left,
-    .btn-right {
-      width: 60px;
-      background-color: #8299a5;
+    padding: 10px 0;
+    .icon {
+      color: #fff;
+    }
+    .icon--ellipsis-v {
+      /*transform: scale(1.8, 1.4);*/
+    }
+    .contact-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .btn {
+      background-color: transparent;
       border: none;
     }
     .title-group {
@@ -123,6 +153,8 @@ export default {
     padding: 0 10px;
     border-top: 1px solid #aaaaaa;
     border-bottom: 1px solid #aaaaaa;
+    max-height: 430px;
+    overflow-y: auto;
 
     .date {
       width: 100px;
@@ -131,6 +163,11 @@ export default {
       color: white;
       padding: 4px 8px;
       margin: 2px auto;
+    }
+
+    .msg {
+      pointer-events: all;
+      cursor: pointer;
     }
 
     .own-msg {
@@ -172,13 +209,26 @@ export default {
     }
   }
 
-  .input-pannel {
-    height: 46px;
-
+  .input-panel {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 10px;
+    .icon {
+      cursor: pointer;
+    }
+    .input-action {
+      width: 30px;
+    }
+    .input-element {
+      flex-grow: 1;
+    }
     input {
-      height: 100%;
       border: none;
-      font-size: 24px;
+      padding: 5px 10px;
+      background-color: transparent;
+    }
+    input:focus {
+      outline: none;
     }
   }
 
