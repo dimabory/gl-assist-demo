@@ -6,6 +6,7 @@
         <Telegram></Telegram>
       </div>
     </div>
+    <img src="../assets/gmail-reg.gif" style="height: 50%; margin-left: 280px" v-if="showGmail"/>
     <div class="agenda">
       <Agenda></Agenda>
     </div>
@@ -36,6 +37,7 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
+      showGmail: false,
     };
   },
   components: {
@@ -45,7 +47,7 @@ export default {
     addMessage(delay, message) {
       return new Promise(resolve => setTimeout(
         () => {
-          this.$store.commit('ADD_MESSAGE',  message);
+          if (message.text !== 'DUMMY PAUSE') this.$store.commit('ADD_MESSAGE',  message);
           resolve();
         },
         delay
@@ -58,7 +60,11 @@ export default {
     await this.addMessage(900, { type: 'response', text: 'What is your e-mail?', time: '22:51' });
     await this.addMessage(3000, { type: 'own', text: 'k.gerasimenko@gl.com', time: '22:51' });
     await this.addMessage(900, { type: 'response', text: 'Please enter registration code sent to your e-mail', time: '22:51' });
+    await this.addMessage(1000, { type: 'response', text: 'DUMMY PAUSE', time: '22:51' });
+    this.showGmail = true;
+    await this.addMessage(2000, { type: 'response', text: 'DUMMY PAUSE', time: '22:51' });
     await this.addMessage(3000, { type: 'own', text: '21737', time: '22:51' });
+    this.showGmail = false;
     await this.addMessage(900, { type: 'response', text: 'Registration completed. Type "Book" to book the conference.', time: '22:51' });
     await this.addMessage(3000, { type: 'response', text: 'DUMMY PAUSE', time: '22:51' });
     this.$store.commit('CLEAR_MESSAGES');
