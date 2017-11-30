@@ -19,6 +19,7 @@ const notSyncedData = {
     searchText: '',
     searchTimestamp: null,
   },
+  message: '',
   messages: [
     // { type: 'own', text: 'Book', time: '22:51' },
     // { type: 'response', text: 'Booked #6 17:00 - 17:30', time: '22:51' },

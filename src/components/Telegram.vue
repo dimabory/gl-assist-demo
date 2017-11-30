@@ -55,7 +55,7 @@
         <icon class="icon icon--smile" name="smile-o" scale="1.5"></icon>
       </div>
       <div class="input-element">
-        <input placeholder="Message" type="text"/>
+        <input placeholder="Message" type="text" :value="message"/>
       </div>
       <div class="input-action attacher">
         <icon class="icon icon--paperclip" name="paperclip" scale="1.5"></icon>
@@ -83,7 +83,7 @@
       Icon,
     },
     computed: {
-      ...mapState(['messages']),
+      ...mapState(['messages', 'message']),
     },
     methods: {
       // ...mapMutations(['ADD_MESSAGE'])
