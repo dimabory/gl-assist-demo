@@ -22,8 +22,8 @@
       <div class="date">November 15</div>
 
       <div :class="['msg', {'own-msg': message.type == 'own', 'response-msg': message.type == 'response'}]"
-           v-for="message in messages"
-           @click="ADD_MESSAGE(message)">
+           v-for="msg in messages"
+           @click="ADD_MESSAGE(msg)">
         <template v-for="line in message.text.split('\n')">{{line}}<br></template>
         <div class="time">{{ message.time }}</div>
       </div>
