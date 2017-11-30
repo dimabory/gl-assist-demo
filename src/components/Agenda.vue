@@ -44,14 +44,17 @@
 
   export default {
     name: 'agenda',
+    props: {
+      occupations: {
+        type: Array,
+        default: function () {
+          return [];
+        }
+      }
+    },
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
-        occupations: [
-          '07:30 - 08:45',
-          '17:00 - 18:30',
-          '11:00 - 12:00',
-        ],
         now: '10:45',
       }
     },

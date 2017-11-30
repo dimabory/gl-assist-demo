@@ -8,22 +8,46 @@
     </div>
     <img src="../assets/gmail-reg.gif" style="height: 50%; margin-left: 280px" v-if="showGmail"/>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+      ]"></agenda>
     </div>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '09:00 - 10:15',
+          '17:00 - 18:30',
+          '11:35 - 12:00',
+      ]"></agenda>
     </div>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+      ]"></agenda>
     </div>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+      ]"></agenda>
     </div>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+      ]"></agenda>
     </div>
     <div class="agenda">
-      <agenda></agenda>
+      <agenda :occupations="[
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+      ]"></agenda>
     </div>
   </div>
 </template>
