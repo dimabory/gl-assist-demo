@@ -2,7 +2,6 @@
   <div class="hello">
     <div class="top-nav">
       <button class="btn">
-        <!--<img src="../assets/icon.png" alt="">-->
         <icon class="icon icon--arrow-left" name="arrow-left" scale="1.1"></icon>
       </button>
       <button class="btn">
@@ -14,18 +13,17 @@
       </div>
       <button class="btn">
         <icon class="icon icon--ellipsis-v" name="ellipsis-v" scale="2"></icon>
-        <!--<img src="../assets/icon.png" alt="">-->
       </button>
     </div>
 
     <div class="messages">
       <div class="date">November 15</div>
 
-      <div :class="['msg', {'own-msg': message.type == 'own', 'response-msg': message.type == 'response'}]"
+      <div :class="['msg', {'own-msg': msg.type === 'own', 'response-msg': msg.type === 'response'}]"
            v-for="msg in messages"
            @click="ADD_MESSAGE(msg)">
-        <template v-for="line in message.text.split('\n')">{{line}}<br></template>
-        <div class="time">{{ message.time }}</div>
+        <template v-for="line in msg.text.split('\n')">{{line}}<br></template>
+        <div class="time">{{ msg.time }}</div>
       </div>
       <!-- <div class="own-msg">
         Book

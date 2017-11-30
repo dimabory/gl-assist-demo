@@ -86,7 +86,7 @@
       2). 13:30-14:20 #2`,
         time: '12:51'
       })
-      await this.addMessage(3000, {type: 'response', text: 'DUMMY PAUSE', time: '22:51'})
+      // await this.addMessage(3000, {type: 'response', text: 'DUMMY PAUSE', time: '22:51'})
       // this.$store.commit('CLEAR_MESSAGES');
     },
   }
