@@ -3,26 +3,26 @@
     <div class="hello">
       <img src="../assets/nexus-frame.png" class="frame"/>
       <div class="screen">
-        <Telegram></Telegram>
+        <telegram></telegram>
       </div>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
     <div class="agenda">
-      <Agenda></Agenda>
+      <agenda></agenda>
     </div>
   </div>
 </template>
@@ -39,7 +39,8 @@
       }
     },
     components: {
-      Telegram, Agenda,
+      Telegram,
+      Agenda,
     },
     methods: {
       async addMessage (message, delay = 1000) {

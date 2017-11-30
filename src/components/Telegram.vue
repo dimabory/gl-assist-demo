@@ -76,7 +76,7 @@
   import { mapState } from 'vuex'
 
   export default {
-    name: 'HelloWorld',
+    name: 'telegram',
     components: {
       Icon,
     },

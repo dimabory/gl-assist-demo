@@ -43,7 +43,7 @@
   }
 
   export default {
-    name: 'HelloWorld',
+    name: 'agenda',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
