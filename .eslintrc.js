@@ -9,7 +9,7 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: 'airbnb-base',
+  extends: 'standard',
   // required to lint *.vue files
   plugins: [
     'html'
@@ -34,6 +34,9 @@ module.exports = {
       'optionalDependencies': ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'semi': 0,
+    // require or disallow trailing commas (comma-dangle)
+    "comma-dangle": ["warn", "only-multiline"],
   }
 }
