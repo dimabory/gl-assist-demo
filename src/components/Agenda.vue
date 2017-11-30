@@ -10,10 +10,10 @@
       </div>
       <div class="slots">
         <div class="first-half">
-          
+
         </div>
         <div class="second-half">
-          
+
         </div>
       </div>
     </div>
@@ -21,48 +21,52 @@
 </template>
 
 <script>
-function timeToMinutes(time) {
-  const [h, m] = time.split(/:/).map(_ => parseInt(_, 10));
-  return 60 * h + m;
-}
-function timeToPxOffset(time) {
-  const minutes = timeToMinutes(time);
-  const dayStartMinutes = 7 * 60;
-  const pxPerMinute = 61 / 60;
-  return pxPerMinute * (minutes - dayStartMinutes); const occupationStartMinutes = timeToMinutes(matches[1]);
-  const occupationEndMinutes = timeToMinutes(matches[2]);
-}
-function computeOccupationBorders(occupation) {
-  const matches = occupation.match(/(\d{2}:\d{2}) - (\d{2}:\d{2})/);
-  const blockStart = timeToPxOffset(matches[1]);// pxPerMinute * (occupationStartMinutes - dayStartMinutes);
-  const blockHeight = timeToPxOffset(matches[2]) - blockStart;// pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
-  return { top: `${blockStart}px`, height: `${blockHeight}px` };
-}
-export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      occupations: [
-        '07:30 - 08:45',
-        '17:00 - 18:30',
-        '11:00 - 12:00',
-      ],
-      now: '10:45',
-    };
-  },
-  computed: {
-    occupationBlocks() {
-      return this.occupations.map(computeOccupationBorders);
+  function timeToMinutes (time) {
+    const [h, m] = time.split(/:/).map(_ => parseInt(_, 10))
+    return 60 * h + m
+  }
+
+  function timeToPxOffset (time) {
+    const minutes = timeToMinutes(time)
+    const dayStartMinutes = 7 * 60
+    const pxPerMinute = 61 / 60
+    return pxPerMinute * (minutes - dayStartMinutes)
+    // const occupationStartMinutes = timeToMinutes(matches[1]);
+    // const occupationEndMinutes = timeToMinutes(matches[2]);
+  }
+
+  function computeOccupationBorders (occupation) {
+    const matches = occupation.match(/(\d{2}:\d{2}) - (\d{2}:\d{2})/)
+    const blockStart = timeToPxOffset(matches[1])// pxPerMinute * (occupationStartMinutes - dayStartMinutes);
+    const blockHeight = timeToPxOffset(matches[2]) - blockStart// pxPerMinute * (occupationEndMinutes - occupationStartMinutes);
+    return {top: `${blockStart}px`, height: `${blockHeight}px`}
+  }
+
+  export default {
+    name: 'HelloWorld',
+    data () {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+        occupations: [
+          '07:30 - 08:45',
+          '17:00 - 18:30',
+          '11:00 - 12:00',
+        ],
+        now: '10:45',
+      }
     },
-    nowTop() {
-      return `${timeToPxOffset(this.now)}px`;
+    computed: {
+      occupationBlocks () {
+        return this.occupations.map(computeOccupationBorders)
+      },
+      nowTop () {
+        return `${timeToPxOffset(this.now)}px`
+      },
     },
-  },
-  created() {
-    // console.log(this.occupationBlocks);
-  },
-};
+    created () {
+      // console.log(this.occupationBlocks);
+    },
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -70,6 +74,7 @@ export default {
   .hello {
     position: relative;
   }
+
   .hour {
     border: 1px solid #aaaaaa;
     // avoid borders doubling in a vertical hour list
@@ -91,13 +96,13 @@ export default {
       flex-direction: column;
       position: relative;
 
-        .first-half {
-          flex-grow: 1;
-          border-bottom: 1px dotted #aaaaaa;
-        }
-        .second-half {
-          flex-grow: 1;
-        }
+      .first-half {
+        flex-grow: 1;
+        border-bottom: 1px dotted #aaaaaa;
+      }
+      .second-half {
+        flex-grow: 1;
+      }
     }
   }
 

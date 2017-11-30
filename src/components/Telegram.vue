@@ -75,7 +75,7 @@
   import 'vue-awesome/icons/smile-o'
   import 'vue-awesome/icons/paperclip'
   import 'vue-awesome/icons/camera'
-  import { mapState, mapMutations } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'HelloWorld',
